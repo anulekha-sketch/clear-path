@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClearPath Real-time Ambulance Priority System</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-ambulance"></i>
+                <span>ClearPath</span>
+            </div>
+            <div class="nav-menu">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#demo" class="nav-link">Live Demo</a>
+                <a href="#analytics" class="nav-link">Analytics</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    ClearPath Real-time Ambulance Priority System
+                </h1>
+                <p class="hero-description">
+                    Automatically alerts traffic police, preempts signals, and guides nearby drivers 
+                    to create fast green corridors for emergency vehicles. Save lives with smart traffic management.
+                </p>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary" onclick="startDemo()">
+                        <i class="fas fa-play"></i> Start Live Demo
+                    </button>
+                    <button class="btn btn-secondary" onclick="scrollToSection('features')">
+                        <i class="fas fa-info-circle"></i> Learn More
+                    </button>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-number">40%</span>
+                        <span class="stat-label">Faster Response</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">95%</span>
+                        <span class="stat-label">Success Rate</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">2min</span>
+                        <span class="stat-label">Avg. Clear Time</span>
+                    </div>
+                </div>
+                
+                <div class="scroll-indicator">
+                    <i class="fas fa-chevron-down"></i>
+                    <span>Scroll to see Live Demo</span>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="ambulance-container">
+                    <div class="ambulance" id="demoAmbulance">
+                        <i class="fas fa-ambulance"></i>
+                    </div>
+                    <div class="route-line" id="routeLine"></div>
+                    <div class="traffic-lights">
+                        <div class="light" id="light1"></div>
+                        <div class="light" id="light2"></div>
+                        <div class="light" id="light3"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title">How ClearPath Works</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-ambulance"></i>
+                    </div>
+                    <h3>Emergency Detection</h3>
+                    <p>Ambulance automatically broadcasts emergency signal with GPS, speed, and severity code to our secure backend.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-traffic-light"></i>
+                    </div>
+                    <h3>Signal Preemption</h3>
+                    <p>Automatically creates green waves at upcoming intersections, clearing the path ahead of the ambulance.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Traffic Officer Alerts</h3>
+                    <p>Real-time notifications to traffic police with one-tap actions to clear lanes and manage traffic.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-car"></i>
+                    </div>
+                    <h3>Driver Notifications</h3>
+                    <p>Push alerts to nearby drivers via navigation apps and connected vehicles to create safe corridors.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-route"></i>
+                    </div>
+                    <h3>Predictive Routing</h3>
+                    <p>AI-powered route optimization considering traffic patterns, road conditions, and hospital capacity.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Analytics & Audit</h3>
+                    <p>Comprehensive logging and analytics for performance tracking and continuous improvement.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Live Demo Section -->
+    <section id="demo" class="demo">
+        <div class="container">
+            <h2 class="section-title">
+                <i class="fas fa-play-circle"></i> Live System Demo
+                <span class="demo-badge">Interactive</span>
+            </h2>
+            <div class="demo-container">
+                <div class="demo-controls">
+                    <button class="btn btn-emergency" id="emergencyBtn" onclick="triggerEmergency()">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        Trigger Emergency
+                    </button>
+                    <button class="btn btn-secondary" onclick="resetDemo()">
+                        <i class="fas fa-redo"></i>
+                        Reset Demo
+                    </button>
+                </div>
+                
+                <div class="demo-dashboard">
+                    <div class="dashboard-panel">
+                        <h3><i class="fas fa-ambulance"></i> Ambulance Status</h3>
+                        <div class="status-grid">
+                            <div class="status-item">
+                                <span class="status-label">Emergency Mode:</span>
+                                <span class="status-value" id="emergencyStatus">Inactive</span>
+                            </div>
+                            <div class="status-item">
+                                <span class="status-label">Current Speed:</span>
+                                <span class="status-value" id="currentSpeed">0 km/h</span>
+                            </div>
+                            <div class="status-item">
+                                <span class="status-label">Max Speed:</span>
+                                <span class="status-value" id="maxSpeed">0 km/h</span>
+                            </div>
+                            <div class="status-item">
+                                <span class="status-label">Distance Traveled:</span>
+                                <span class="status-value" id="distanceTraveled">0.0 km</span>
+                            </div>
+                            <div class="status-item">
+                                <span class="status-label">ETA to Hospital:</span>
+                                <span class="status-value" id="eta">--:--</span>
+                            </div>
+                            <div class="status-item">
+                                <span class="status-label">ETA to Destination:</span>
+                                <span class="status-value" id="etaDestination">--:--</span>
+                            </div>
+                            <div class="status-item">
+                                <span class="status-label">Severity Code:</span>
+                                <span class="status-value" id="severityCode">--</span>
+                            </div>
+                            <div class="status-item">
+                                <span class="status-label">Patient Status:</span>
+                                <span class="status-value" id="patientStatus">--</span>
+                            </div>
+                            <div class="status-item">
+                                <span class="status-label">Route Progress:</span>
+                                <span class="status-value" id="routeProgress">0%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-panel">
+                        <h3><i class="fas fa-traffic-light"></i> Traffic Signals</h3>
+                        <div class="signals-grid">
+                            <div class="signal-item">
+                                <span class="signal-name">Intersection A</span>
+                                <div class="signal-light" id="signalA">
+                                    <div class="light red"></div>
+                                    <div class="light yellow"></div>
+                                    <div class="light green"></div>
+                                </div>
+                                <span class="signal-status" id="statusA">Normal</span>
+                            </div>
+                            <div class="signal-item">
+                                <span class="signal-name">Intersection B</span>
+                                <div class="signal-light" id="signalB">
+                                    <div class="light red"></div>
+                                    <div class="light yellow"></div>
+                                    <div class="light green"></div>
+                                </div>
+                                <span class="signal-status" id="statusB">Normal</span>
+                            </div>
+                            <div class="signal-item">
+                                <span class="signal-name">Intersection C</span>
+                                <div class="signal-light" id="signalC">
+                                    <div class="light red"></div>
+                                    <div class="light yellow"></div>
+                                    <div class="light green"></div>
+                                </div>
+                                <span class="signal-status" id="statusC">Normal</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-panel">
+                        <h3><i class="fas fa-shield-alt"></i> Officer Alerts</h3>
+                        <div class="alerts-container" id="alertsContainer">
+                            <div class="no-alerts">No active alerts</div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-panel">
+                        <h3><i class="fas fa-car"></i> Driver Notifications</h3>
+                        <div class="notifications-container" id="notificationsContainer">
+                            <div class="no-notifications">No active notifications</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="map-container">
+                    <h3><i class="fas fa-map"></i> Live Route Map - Round Trip</h3>
+                    <div class="map" id="liveMap">
+                        <div class="map-route">
+                            <div class="route-point start" id="startPoint">
+                                <i class="fas fa-hospital"></i>
+                                <span>Hospital</span>
+                                <div class="point-info">Start/End</div>
+                            </div>
+                            <div class="route-point ambulance" id="ambulancePoint">
+                                <i class="fas fa-ambulance"></i>
+                                <span>Ambulance</span>
+                                <div class="point-info" id="ambulanceInfo">Position: 0%</div>
+                            </div>
+                            <div class="route-point destination" id="destinationPoint">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Emergency Site</span>
+                                <div class="point-info">Patient Location</div>
+                            </div>
+                            <div class="route-point return" id="returnPoint">
+                                <i class="fas fa-arrow-left"></i>
+                                <span>Return Route</span>
+                                <div class="point-info">Back to Hospital</div>
+                            </div>
+                            <div class="route-line forward" id="forwardRouteLine"></div>
+                            <div class="route-line return" id="returnRouteLine"></div>
+                        </div>
+                        <div class="intersection intersection-a" id="mapIntersectionA">
+                            <i class="fas fa-traffic-light"></i>
+                            <span>Intersection A</span>
+                            <div class="intersection-info">Distance: 2.1 km</div>
+                        </div>
+                        <div class="intersection intersection-b" id="mapIntersectionB">
+                            <i class="fas fa-traffic-light"></i>
+                            <span>Intersection B</span>
+                            <div class="intersection-info">Distance: 4.3 km</div>
+                        </div>
+                        <div class="intersection intersection-c" id="mapIntersectionC">
+                            <i class="fas fa-traffic-light"></i>
+                            <span>Intersection C</span>
+                            <div class="intersection-info">Distance: 6.8 km</div>
+                        </div>
+                        <div class="route-stats">
+                            <div class="stat-item">
+                                <span class="stat-label">Total Distance:</span>
+                                <span class="stat-value" id="totalDistance">13.6 km</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Current Phase:</span>
+                                <span class="stat-value" id="currentPhase">Standby</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Analytics Section -->
+    <section id="analytics" class="analytics">
+        <div class="container">
+            <h2 class="section-title">Performance Analytics</h2>
+            <div class="analytics-grid">
+                <div class="metric-card">
+                    <div class="metric-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="metric-content">
+                        <h3>Average Response Time</h3>
+                        <div class="metric-value">2.3 min</div>
+                        <div class="metric-change positive">-15% vs last month</div>
+                    </div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-icon">
+                        <i class="fas fa-route"></i>
+                    </div>
+                    <div class="metric-content">
+                        <h3>Route Efficiency</h3>
+                        <div class="metric-value">94%</div>
+                        <div class="metric-change positive">+8% vs last month</div>
+                    </div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="metric-content">
+                        <h3>Success Rate</h3>
+                        <div class="metric-value">97%</div>
+                        <div class="metric-change positive">+3% vs last month</div>
+                    </div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="metric-content">
+                        <h3>Officer Response</h3>
+                        <div class="metric-value">1.8 min</div>
+                        <div class="metric-change positive">-12% vs last month</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="chart-container">
+                <h3>Response Time Trends</h3>
+                <div class="chart-wrapper">
+                    <canvas id="responseChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Get Started with ClearPath</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Ready to save lives with smart traffic management?</h3>
+                    <p>Join cities worldwide in implementing ClearPath for faster emergency response times and safer roads.</p>
+                    <div class="contact-features">
+                        <div class="contact-feature">
+                            <i class="fas fa-check"></i>
+                            <span>90-day pilot program</span>
+                        </div>
+                        <div class="contact-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Full technical support</span>
+                        </div>
+                        <div class="contact-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Custom integration</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <input type="text" id="name" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" placeholder="Email Address" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="organization" placeholder="Organization">
+                        </div>
+                        <div class="form-group">
+                            <select id="interest" required>
+                                <option value="">Select Interest</option>
+                                <option value="pilot">90-day Pilot Program</option>
+                                <option value="demo">Live Demo</option>
+                                <option value="partnership">Partnership</option>
+                                <option value="investment">Investment Opportunity</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="message" placeholder="Tell us about your city's needs" rows="4"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-paper-plane"></i> Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <i class="fas fa-ambulance"></i>
+                        <span>ClearPath</span>
+                    </div>
+                    <p>Revolutionizing emergency response with smart traffic management technology.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Product</h4>
+                    <ul>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#demo">Live Demo</a></li>
+                        <li><a href="#analytics">Analytics</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Careers</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 ClearPath. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
